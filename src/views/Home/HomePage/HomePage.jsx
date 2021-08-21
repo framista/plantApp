@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text } from 'react-native';
 
-import PageContainer from '../../../components/layout/containers/PageContainer/PageContainer';
+import { PageContainer } from '../../../components/layout/containers';
+import HomeCard from '../HomeCard/HomeCard';
+import HomeHeader from '../HomeHeader/HomeHeader';
+import HomeImage from '../HomeImage/HomeImage';
 
-import getStyles from './HomePage.styles';
-
-const HomePage = () => {
-  return (
-    <PageContainer>
-      <Text>Home</Text>
-    </PageContainer>
-  );
-};
-
+const HomePage = () => (
+  <PageContainer>
+    <HomeHeader />
+    <HomeImage />
+    <HomeCard />
+  </PageContainer>
+);
 export default HomePage;
