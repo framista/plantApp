@@ -1,25 +1,20 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import TabBar from '../TabBar/TabBar.jsx';
-import HomePage from '../../../../views/Home/HomePage/HomePage.jsx';
-import AboutPage from '../../../../views/About/AboutPage/AboutPage.jsx';
-import HistoryPage from '../../../../views/History/HistoryPage/HistoryPage.jsx';
+import HomePicture from '../../../../views/Home/HomePicture/HomePicture';
+import MainTabs from '../MainTabs/MainTabs';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const MainNavigation = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
+    <Stack.Navigator
       screenOptions={() => ({
         headerShown: false,
-      })}
-      tabBar={props => <TabBar {...props} />}>
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="History" component={HistoryPage} />
-      <Tab.Screen name="About" component={AboutPage} />
-    </Tab.Navigator>
+      })}>
+      <Stack.Screen name="Main" component={MainTabs} />
+      <Stack.Screen name="HomePicture" component={HomePicture} />
+    </Stack.Navigator>
   );
 };
 
