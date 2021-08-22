@@ -8,4 +8,5 @@ export const colors = {
 
 export const gradients = {
   GREEN: ['#67c17c', '#5ABB71', '#419f57'],
+  WHITE: ['#FAFAFA', '#F3FBFF', '#e6f0f5'],
 };
