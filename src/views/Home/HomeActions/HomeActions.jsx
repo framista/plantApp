@@ -1,14 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 import { Button } from '../../../components/forms';
-import { identifyPlant } from '../../../services/plantApi/plantApi';
-import { readImageFile } from '../../../services/fileOperation/fileOperation';
+
+import { fetchPlantsFromGallery } from '../../../store/plantsCurrent/plantsCurrent.actions';
 
 const HomeActions = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const takePhoto = () => {
     navigation.navigate('HomePicture');
@@ -24,20 +26,9 @@ const HomeActions = () => {
       console.log(response.assets[0].uri);
       if (response.assets.length > 0) {
         const { uri } = response.assets[0];
-        readImageFile(uri)
-          .then(res => uploadPic(res))
-          .catch(err => console.log(err));
+        dispatch(fetchPlantsFromGallery(uri));
       }
     });
-  };
-
-  const uploadPic = async base64 => {
-    try {
-      const res = await identifyPlant(base64);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (

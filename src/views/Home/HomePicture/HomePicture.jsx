@@ -4,8 +4,8 @@ import { RNCamera } from 'react-native-camera';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { PageContainer } from '../../../components/layout/containers';
-import { identifyPlant } from '../../../services/plantApi/plantApi';
 import { colors } from '../../../constants/layout/colors';
+import { identifyPlant } from '../../../services/plantApi/plantApi';
 
 import getStyles from './HomePicture.styles';
 
