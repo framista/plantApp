@@ -1,15 +1,18 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 
 import { PageContainer } from '../../../components/layout/containers';
-import HomeCard from '../HomeCard/HomeCard';
+import HomeActions from '../HomeActions/HomeActions';
 import HomeHeader from '../HomeHeader/HomeHeader';
 import HomeImage from '../HomeImage/HomeImage';
 
 const HomePage = () => (
   <PageContainer>
-    <HomeHeader />
-    <HomeImage />
-    <HomeCard />
+    <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={false}>
+      <HomeHeader />
+      <HomeImage />
+      <HomeActions />
+    </ScrollView>
   </PageContainer>
 );
 export default HomePage;

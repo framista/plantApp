@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 const getStyles = () => ({
   container: {
     alignItems: 'center',
-    paddingVertical: 10,
   },
 });
 
