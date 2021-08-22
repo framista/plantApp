@@ -1,3 +1,5 @@
+import { getUniqueId } from './uniqueId';
+
 export const getFormattedPlants = (results = []) =>
   results.map(res => {
     const { score, species, gbif } = res;
@@ -5,6 +7,7 @@ export const getFormattedPlants = (results = []) =>
     const { scientificName: genusScientificName } = genus;
     const { scientificName: familyScientificName } = family;
     return {
+      id: getUniqueId(),
       score,
       genusScientificName,
       familyScientificName,
