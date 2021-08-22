@@ -2,11 +2,11 @@ import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import TabBar from '../TabBar/TabBar.jsx';
+import TabBar from '../TabBar/TabBar';
 
-import HomePage from '../../../../views/Home/HomePage/HomePage';
-import AboutPage from '../../../../views/About/AboutPage/AboutPage.jsx';
-import HistoryPage from '../../../../views/History/HistoryPage/HistoryPage.jsx';
+import HomeScreens from '../Screens/HomeScreens/HomeScreens';
+import AboutPage from '../../../../views/About/AboutPage/AboutPage';
+import HistoryPage from '../../../../views/History/HistoryPage/HistoryPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const MainTabs = () => {
         headerShown: false,
       })}
       tabBar={props => <TabBar {...props} />}>
-      <Tab.Screen name="Home" component={HomePage} />
+      <Tab.Screen name="Home" component={HomeScreens} />
       <Tab.Screen name="History" component={HistoryPage} />
       <Tab.Screen name="About" component={AboutPage} />
     </Tab.Navigator>
