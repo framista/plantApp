@@ -1,16 +1,18 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { PageContainer } from '../../../components/layout/containers';
 import { colors } from '../../../constants/layout/colors';
-import { identifyPlant } from '../../../services/plantApi/plantApi';
 
 import getStyles from './HomePicture.styles';
+import { fetchIdentyfingPlant } from '../../../store/plantsCurrent/plantsCurrent.actions';
 
 const HomePicture = () => {
   const cameraRef = useRef(null);
+  const dispatch = useDispatch();
   const styles = getStyles();
 
   const takePicture = async () => {
@@ -18,8 +20,7 @@ const HomePicture = () => {
       const options = { quality: 1, base64: true };
       try {
         const data = await cameraRef.current.takePictureAsync(options);
-        const response = await identifyPlant(data.base64);
-        console.log(response);
+        dispatch(fetchIdentyfingPlant(data.base64));
       } catch (err) {
         console.log(err);
       }

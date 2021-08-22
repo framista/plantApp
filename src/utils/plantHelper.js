@@ -1,6 +1,6 @@
 export const getFormattedPlants = (results = []) =>
   results.map(res => {
-    const { score, species } = res;
+    const { score, species, gbif } = res;
     const { genus, family, commonNames, scientificName } = species;
     const { scientificName: genusScientificName } = genus;
     const { scientificName: familyScientificName } = family;
@@ -10,5 +10,6 @@ export const getFormattedPlants = (results = []) =>
       familyScientificName,
       commonNames,
       scientificName,
+      gbifId: gbif.id,
     };
   });

@@ -3,7 +3,7 @@ import { readImageFile } from '../../services/fileOperation/fileOperation';
 import { identifyPlant } from '../../services/plantApi/plantApi';
 import { getFormattedPlants } from '../../utils/plantHelper';
 
-const fetchIdentyfingPlant = base64 => async dispatch => {
+export const fetchIdentyfingPlant = base64 => async dispatch => {
   try {
     const res = await identifyPlant(base64);
     const data = await res.json();
