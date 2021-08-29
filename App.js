@@ -4,13 +4,14 @@ import MainNavigation from './src/components/layout/navigation/MainNavigation/Ma
 import { NavigationContainer } from '@react-navigation/native';
 
 import configureStore from './src/store/index.js';
+import { navigationRef } from './src/components/layout/navigation/MainNavigation/RootNavigation';
 
 const store = configureStore();
 
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <MainNavigation />
       </NavigationContainer>
     </Provider>

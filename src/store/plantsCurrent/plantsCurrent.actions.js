@@ -2,6 +2,7 @@ import * as AT from '../actionTypes';
 import { readImageFile } from '../../services/fileOperation/fileOperation';
 import { identifyPlant } from '../../services/plantApi/plantApi';
 import { getFormattedPlants } from '../../utils/plantHelper';
+import * as RootNavigation from '../../components/layout/navigation/MainNavigation/RootNavigation';
 
 export const fetchIdentyfingPlant = base64 => async dispatch => {
   try {
@@ -18,6 +19,7 @@ export const fetchIdentyfingPlant = base64 => async dispatch => {
       type: AT.GET_IDENTIFIED_PLANTS,
       payload: plants,
     });
+    RootNavigation.navigate('PlantsCurrent');
   } catch (err) {
     console.log(err);
   }

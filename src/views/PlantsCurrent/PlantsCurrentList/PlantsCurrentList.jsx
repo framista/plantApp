@@ -1,13 +1,14 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
-import { plantsCurrent } from '../../../mocks/plantsCurrent';
-
+import { useSelector } from 'react-redux';
 import PlantsCurrentItem from '../PlantsCurrentItem/PlantsCurrentItem';
 
 import getStyles from './PlantsCurrentList.styles';
 
 const PlantsCurrent = () => {
   const styles = getStyles();
+  const plantsCurrent = useSelector(state => state.plantsCurrent);
+
   return (
     <FlatList
       data={plantsCurrent}

@@ -17,7 +17,7 @@ const HomePicture = () => {
 
   const takePicture = async () => {
     if (cameraRef) {
-      const options = { quality: 1, base64: true };
+      const options = { quality: 0.7, base64: true };
       try {
         const data = await cameraRef.current.takePictureAsync(options);
         dispatch(fetchIdentyfingPlant(data.base64));
