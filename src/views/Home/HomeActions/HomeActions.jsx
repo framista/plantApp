@@ -23,8 +23,7 @@ const HomeActions = () => {
         console.log('Image Picker Error: ', response.errorMessage);
         return;
       }
-      console.log(response.assets[0].uri);
-      if (response.assets.length > 0) {
+      if (response.assets?.length > 0) {
         const { uri } = response.assets[0];
         dispatch(fetchPlantsFromGallery(uri));
       }
