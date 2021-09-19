@@ -2,9 +2,13 @@ import * as AT from '../actionTypes';
 import * as MT from '../../constants/modal/modalTypes';
 import { readImageFile } from '../../services/fileOperation/fileOperation';
 import { identifyPlant } from '../../services/plantApi/plantApi';
-import { getFormattedPlants } from '../../utils/plantHelper';
+import {
+  getFormattedPlantDetails,
+  getFormattedPlants,
+} from '../../utils/plantHelper';
 import * as RootNavigation from '../../components/layout/navigation/MainNavigation/RootNavigation';
 import { showModal, hideModal } from '../uiState/uiState.actions';
+import { fetchPlantInfoByGbifId } from '../../services/gbifApi/gbifApi';
 
 export const fetchIdentyfingPlant = base64 => async dispatch => {
   try {
@@ -40,5 +44,24 @@ export const fetchPlantsFromGallery = uri => async (dispatch, getState) => {
     dispatch(fetchIdentyfingPlant(base64));
   } catch (error) {
     console.log(error);
+  }
+};
+
+const getPlantDetailsSuccess = plantDetails => ({
+  type: AT.GET_PLANT_DETAILS,
+  payload: plantDetails,
+});
+
+export const showPlantDetails = gbifId => async dispatch => {
+  try {
+    const result = await fetchPlantInfoByGbifId(gbifId);
+    const data = await result.json();
+    if (data.results.length > 0) {
+      const plantDetails = getFormattedPlantDetails(data.results);
+      dispatch(getPlantDetailsSuccess(plantDetails));
+      RootNavigation.navigate('PlantDetails');
+    }
+  } catch (err) {
+    console.log(err);
   }
 };

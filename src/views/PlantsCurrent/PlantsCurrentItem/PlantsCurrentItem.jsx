@@ -1,21 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import { showPlantDetails } from '../../../store/plantsCurrent/plantsCurrent.actions';
 
 import getStyles from './PlantsCurrentItem.style';
 
 const PlantsCurrentItem = ({ plant }) => {
   const {
+    gbifId,
     scientificName,
     familyScientificName,
     genusScientificName,
     score,
     commonNames,
   } = plant;
+  const dispatch = useDispatch();
   const styles = getStyles();
 
+  const openDetails = () => {
+    dispatch(showPlantDetails(gbifId));
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={openDetails}
+      disabled={!gbifId}>
       <View style={styles.content}>
         <Text style={styles.title}>{scientificName}</Text>
         <View style={styles.detailsContainer}>

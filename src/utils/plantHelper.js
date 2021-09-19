@@ -16,3 +16,33 @@ export const getFormattedPlants = (results = []) =>
       gbifId: gbif.id,
     };
   });
+
+export const getFormattedPlantDetails = (results = []) => {
+  const [firstRes] = results;
+  const info = {
+    biology: {
+      scientificName: firstRes.scientificName,
+      kingdom: firstRes.kingdom,
+      phylum: firstRes.phylum,
+      order: firstRes.order,
+      family: firstRes.family,
+      genus: firstRes.genus,
+      species: firstRes.species,
+      genericName: firstRes.genericName,
+      specificEpithet: firstRes.specificEpithet,
+    },
+  };
+  const occurrences = results.map(res => {
+    return {
+      id: res.key,
+      country: res.country,
+      eventDate: res.eventDate,
+      coordinates: {
+        lon: res.decimalLongitude,
+        lat: res.decimalLatitude,
+      },
+      media: res.media,
+    };
+  });
+  return { ...info, occurrences };
+};
