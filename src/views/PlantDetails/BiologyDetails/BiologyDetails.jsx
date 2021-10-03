@@ -10,7 +10,7 @@ import getStyles from './BiologyDetails.styles';
 const BiologyDetails = ({ biology }) => {
   const styles = getStyles();
   return (
-    <View>
+    <View style={styles.container}>
       <Header text={biology.scientificName} />
       {Object.keys(biology).map(key => {
         return (

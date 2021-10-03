@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 import getStyles from './PageContainer.styles';
 
-const PageContainer = ({ children }) => {
+const PageContainer = ({ children, style }) => {
   const styles = getStyles();
-  return <View style={styles.container}>{children}</View>;
+  return <View style={[styles.container, style]}>{children}</View>;
 };
 
 PageContainer.propTypes = {
   children: PropTypes.node,
+  style: PropTypes.shape({}),
 };
 
 export default PageContainer;
