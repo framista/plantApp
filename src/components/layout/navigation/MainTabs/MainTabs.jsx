@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBar from '../TabBar/TabBar';
 
 import HomeScreens from '../Screens/HomeScreens/HomeScreens';
-import AboutPage from '../../../../views/About/AboutPage/AboutPage';
+import AboutList from '../../../../views/About/AboutList/AboutList';
 import HistoryList from '../../../../views/History/HistoryList/HistoryList';
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +20,7 @@ const MainTabs = () => {
       tabBar={props => <TabBar {...props} />}>
       <Tab.Screen name="Home" component={HomeScreens} />
       <Tab.Screen name="History" component={HistoryList} />
-      <Tab.Screen name="About" component={AboutPage} />
+      <Tab.Screen name="About" component={AboutList} />
     </Tab.Navigator>
   );
 };
