@@ -4,6 +4,7 @@ export const colors = {
   GREEN: '#5ABB71',
   LIGHT_GREEN: '#F3FBFF',
   WHITE: '#FAFAFA',
+  PURE_WHITE: '#FFF',
 };
 
 export const gradients = {
