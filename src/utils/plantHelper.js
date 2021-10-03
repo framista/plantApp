@@ -61,7 +61,7 @@ export const addPlantToStorage = async (gbif, plantDetails) => {
     const storedData = await getData(PLANTS_HISTORY_KEY, plantsHistoryInitData);
     const newItems = [
       { gbif, scientificName: plantDetails.biology.scientificName },
-      ...storedData.slice(0, 14),
+      ...storedData.filter(d => d.gbif !== gbif).slice(0, 14),
     ];
     await storeData(PLANTS_HISTORY_KEY, JSON.stringify(newItems));
   } catch (err) {
