@@ -8,7 +8,7 @@ const getStyles = () => ({
   },
   detailsContainer: {
     flexDirection: 'row',
-    marginVertical: 5,
+    marginVertical: 3,
   },
   textSecondary: {
     marginRight: 5,

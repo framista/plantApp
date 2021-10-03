@@ -8,4 +8,5 @@ export const plantDetailsBiologyMessages = {
   species: 'Species',
   genericName: 'Generic name',
   specificEpithet: 'Specific epithet',
+  iucnRedListCategory: 'IUCN category',
 };
