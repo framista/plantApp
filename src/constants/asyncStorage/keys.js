@@ -1,0 +1,1 @@
+export const PLANTS_HISTORY_KEY = 'PLANTS_HISTORY_KEY';

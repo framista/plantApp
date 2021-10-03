@@ -1,3 +1,6 @@
+import { PLANTS_HISTORY_KEY } from '../constants/asyncStorage/keys';
+import { plantsHistoryInitData } from '../constants/plants/plantsHistory';
+import { getData, storeData } from '../services/asyncStorage/asyncStorage';
 import { formatDate } from './dateHelper';
 import { getUniqueId } from './uniqueId';
 
@@ -31,6 +34,7 @@ export const getFormattedPlantDetails = (results = []) => {
       species: firstRes.species,
       genericName: firstRes.genericName,
       specificEpithet: firstRes.specificEpithet,
+      iucnRedListCategory: firstRes.iucnRedListCategory,
     },
   };
   let counter = 0;
@@ -50,4 +54,17 @@ export const getFormattedPlantDetails = (results = []) => {
     ];
   }, []);
   return { ...info, occurrences };
+};
+
+export const addPlantToStorage = async (gbif, plantDetails) => {
+  try {
+    const storedData = await getData(PLANTS_HISTORY_KEY, plantsHistoryInitData);
+    const newItems = [
+      { gbif, scientificName: plantDetails.biology.scientificName },
+      ...storedData.slice(0, 14),
+    ];
+    await storeData(PLANTS_HISTORY_KEY, JSON.stringify(newItems));
+  } catch (err) {
+    console.log(err);
+  }
 };

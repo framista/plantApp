@@ -3,6 +3,7 @@ import * as MT from '../../constants/modal/modalTypes';
 import { readImageFile } from '../../services/fileOperation/fileOperation';
 import { identifyPlant } from '../../services/plantApi/plantApi';
 import {
+  addPlantToStorage,
   getFormattedPlantDetails,
   getFormattedPlants,
 } from '../../utils/plantHelper';
@@ -58,6 +59,7 @@ export const showPlantDetails = gbifId => async dispatch => {
     const data = await result.json();
     if (data.results.length > 0) {
       const plantDetails = getFormattedPlantDetails(data.results);
+      await addPlantToStorage(gbifId, plantDetails);
       dispatch(getPlantDetailsSuccess(plantDetails));
       RootNavigation.navigate('PlantDetails');
     }
