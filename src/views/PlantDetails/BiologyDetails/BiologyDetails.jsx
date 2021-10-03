@@ -18,7 +18,7 @@ const BiologyDetails = ({ biology }) => {
             <Text style={styles.textSecondary}>
               {plantDetailsBiologyMessages[key]}:
             </Text>
-            <Text style={styles.textPrimary}>{biology[key]}</Text>
+            <Text style={styles.textPrimary}>{biology[key] || '-'}</Text>
           </View>
         );
       })}

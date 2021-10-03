@@ -1,3 +1,4 @@
+import { formatDate } from './dateHelper';
 import { getUniqueId } from './uniqueId';
 
 export const getFormattedPlants = (results = []) =>
@@ -32,17 +33,21 @@ export const getFormattedPlantDetails = (results = []) => {
       specificEpithet: firstRes.specificEpithet,
     },
   };
-  const occurrences = results.map(res => {
-    return {
-      id: res.key,
-      country: res.country,
-      eventDate: res.eventDate,
-      coordinates: {
-        lon: res.decimalLongitude,
-        lat: res.decimalLatitude,
+  let counter = 0;
+  const occurrences = results.reduce((list, res) => {
+    if (!res.media[0]?.identifier || counter > 7) {
+      return list;
+    }
+    counter++;
+    return [
+      ...list,
+      {
+        id: res.key,
+        country: res.country,
+        eventDate: formatDate(res.eventDate),
+        media: res.media[0].identifier.replace('http://', 'https://'),
       },
-      media: res.media,
-    };
-  });
+    ];
+  }, []);
   return { ...info, occurrences };
 };
