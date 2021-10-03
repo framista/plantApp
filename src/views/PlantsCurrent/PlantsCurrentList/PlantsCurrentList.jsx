@@ -17,6 +17,7 @@ const PlantsCurrent = () => {
       keyExtractor={item => item.id}
       ListHeaderComponent={() => <Text style={styles.title}>Results</Text>}
       stickyHeaderIndices={[0]}
+      style={styles.container}
     />
   );
 };
