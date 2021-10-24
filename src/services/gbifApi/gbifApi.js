@@ -7,7 +7,6 @@ export const fetchPlantInfoByGbifId = async gbifId =>
       const response = fetch(url);
       resolve(response);
     } catch (error) {
-      console.log(error);
       reject();
     }
   });

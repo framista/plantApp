@@ -9,7 +9,6 @@ export const fetchPlantIucnStatusByName = name =>
       const data = await response.json();
       resolve(data);
     } catch (error) {
-      console.log(error);
       reject();
     }
   });
@@ -26,7 +25,6 @@ export const fetchIucnCountriesOccurrences = taxonId =>
         ),
       );
     } catch (error) {
-      console.log(error);
       reject();
     }
   });
