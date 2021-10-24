@@ -13,6 +13,7 @@ const CountriesList = ({ countries }) => {
       renderItem={({ item }) => <CountriesListItem country={item} />}
       keyExtractor={item => item.code}
       style={styles.container}
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };
