@@ -1,20 +1,24 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Button } from '../../components/forms';
 import { PageContainer } from '../../components/layout/containers';
 import CountriesList from './CountriesList/CountriesList';
 import StatusDetails from './StatusDetails/StatusDetails';
-// import { showIucnStatus } from '../../store/iucnStatus/iucnStatus.actions';
+import { showModal } from '../../store/uiState/uiState.actions';
+import { IUCN_CATEGORIES_MODAL } from '../../constants/modal/modalTypes';
 
 import getStyles from './IucnStatus.styles';
 
 const IucnStatus = () => {
   const iucnStatus = useSelector(state => state.iucnStatus);
   const styles = getStyles();
+  const dispatch = useDispatch();
 
-  const openIucnModal = () => {};
+  const openIucnModal = () => {
+    dispatch(showModal(IUCN_CATEGORIES_MODAL));
+  };
 
   return (
     <PageContainer style={styles.pageContainer}>
