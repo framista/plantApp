@@ -68,3 +68,11 @@ export const addPlantToStorage = async (gbif, plantDetails) => {
     console.log(err);
   }
 };
+
+export const getFormattedIucnStatus = data => ({
+  category: data.category,
+  class: data.class,
+  populationTrend: data.population_trend,
+  scientificName: data.scientific_name,
+  taxonId: data.taxonid,
+});
