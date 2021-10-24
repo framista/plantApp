@@ -16,6 +16,15 @@ const fetchingIucnStatusSuccessful = iucnStatus => dispatch => {
   RootNavigation.navigate('IucnStatus');
 };
 
+const notFoundIucnStatus = () => dispatch => {
+  dispatch(
+    showModal(MT.INFO_MODAL, {
+      title: 'Not found',
+      text: "IUCN status was't found. Try again.",
+    }),
+  );
+};
+
 export const showIucnStatus = name => async dispatch => {
   try {
     dispatch(showModal(MT.LOADING_MODAL));
@@ -24,9 +33,11 @@ export const showIucnStatus = name => async dispatch => {
       const iucnStatus = getFormattedIucnStatus(data.result[0]);
       const countries = await fetchIucnCountriesOccurrences(iucnStatus.taxonId);
       dispatch(fetchingIucnStatusSuccessful({ ...iucnStatus, countries }));
+      dispatch(hideModal());
+    } else {
+      dispatch(notFoundIucnStatus());
     }
-    dispatch(hideModal());
   } catch (err) {
-    console.log(err);
+    dispatch(notFoundIucnStatus());
   }
 };
