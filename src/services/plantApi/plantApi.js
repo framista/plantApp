@@ -5,11 +5,12 @@ const BASE_URL = 'https://my-api.plantnet.org';
 const IDENTIFY_URL = 'v2/identify/all';
 
 export const identifyPlant = async base64 =>
-  new Promise((resolve, reject) => {
+  new Promise(async (resolve, reject) => {
     try {
       const { url, header, body } = identifyPlantData(base64);
-      const response = RNFetchBlob.fetch('POST', url, header, body);
-      resolve(response);
+      const response = await RNFetchBlob.fetch('POST', url, header, body);
+      const data = await response.json();
+      resolve(data);
     } catch (err) {
       reject(err);
     }

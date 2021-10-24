@@ -8,34 +8,43 @@ import {
   getFormattedPlants,
 } from '../../utils/plantHelper';
 import * as RootNavigation from '../../components/layout/navigation/MainNavigation/RootNavigation';
-import { showModal, hideModal } from '../uiState/uiState.actions';
+import {
+  showModal,
+  hideModal,
+  showInfoModal,
+} from '../uiState/uiState.actions';
 import { fetchPlantInfoByGbifId } from '../../services/gbifApi/gbifApi';
+
+const fetchIdentyfingPlantError = data => dispatch => {
+  const title = data.error;
+  const text = `Try again. ${data.message}`;
+  dispatch(showInfoModal(title, text));
+};
+
+const fetchIdentyfingPlantSuccess = plants => dispatch => {
+  dispatch({
+    type: AT.GET_IDENTIFIED_PLANTS,
+    payload: plants,
+  });
+  dispatch(hideModal());
+  RootNavigation.navigate('PlantsCurrent');
+};
 
 export const fetchIdentyfingPlant = base64 => async dispatch => {
   try {
     dispatch(showModal(MT.LOADING_MODAL));
-    const res = await identifyPlant(base64);
-    const data = await res.json();
+    const data = await identifyPlant(base64);
     if (data.error) {
-      console.log(data);
-      dispatch(
-        showModal(MT.INFO_MODAL, {
-          title: data.error,
-          text: `Try again. ${data.message}`,
-        }),
-      );
+      dispatch(fetchIdentyfingPlantError(data));
       return;
     }
     const results = data.results;
     const plants = getFormattedPlants(results);
-    dispatch({
-      type: AT.GET_IDENTIFIED_PLANTS,
-      payload: plants,
-    });
-    dispatch(hideModal());
-    RootNavigation.navigate('PlantsCurrent');
+    dispatch(fetchIdentyfingPlantSuccess(plants));
   } catch (err) {
-    console.log(err);
+    dispatch(
+      fetchIdentyfingPlantError({ error: 'Error', message: 'Unknown error.' }),
+    );
   }
 };
 
@@ -53,17 +62,27 @@ const getPlantDetailsSuccess = plantDetails => ({
   payload: plantDetails,
 });
 
+const getPlantDetailsError = () => dispatch => {
+  const title = 'Error';
+  const text = 'Not found GBIF information. Try again.';
+  dispatch(showInfoModal(title, text));
+};
+
 export const showPlantDetails = gbifId => async dispatch => {
   try {
+    dispatch(showModal(MT.LOADING_MODAL));
     const result = await fetchPlantInfoByGbifId(gbifId);
     const data = await result.json();
     if (data.results.length > 0) {
       const plantDetails = getFormattedPlantDetails(data.results);
       await addPlantToStorage(gbifId, plantDetails);
       dispatch(getPlantDetailsSuccess(plantDetails));
+      dispatch(hideModal());
       RootNavigation.navigate('PlantDetails');
+    } else {
+      dispatch(getPlantDetailsError());
     }
   } catch (err) {
-    console.log(err);
+    dispatch(getPlantDetailsError());
   }
 };
