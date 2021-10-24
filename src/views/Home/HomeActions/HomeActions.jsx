@@ -19,7 +19,6 @@ const HomeActions = () => {
   const chooseImage = () => {
     launchImageLibrary(null, response => {
       if (response.errorMessage) {
-        // TODO: modal error
         console.log('Image Picker Error: ', response.errorMessage);
         return;
       }
