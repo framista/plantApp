@@ -5,10 +5,15 @@ import rootReducer from './rootReducer';
 
 const configureStore = preloadedState => {
   const middlewares = [thunkMiddleware];
+  if (__DEV__) {
+    const createDebugger = require('redux-flipper').default;
+    middlewares.push(createDebugger());
+  }
   const middlewareEnhancer = applyMiddleware(...middlewares);
   const composedEnhancers = compose(middlewareEnhancer);
 
   const store = createStore(rootReducer, preloadedState, composedEnhancers);
+
   return store;
 };
 
