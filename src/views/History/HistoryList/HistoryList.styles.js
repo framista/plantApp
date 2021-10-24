@@ -11,6 +11,9 @@ const getStyles = () => ({
     paddingTop: 0,
     paddingHorizontal: widthPixel(45),
   },
+  contentContainer: {
+    paddingBottom: heightPixel(20),
+  },
 });
 
 export default StyleSheet.create(getStyles);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
 import { Header } from '../../../components/layout/typography';
 import HistoryListItem from '../HistoryListItem/HistoryListItem';
@@ -11,12 +12,13 @@ import { getData } from '../../../services/asyncStorage/asyncStorage';
 import getStyles from './HistoryList.styles';
 
 const HistoryList = () => {
+  const isFocused = useIsFocused();
   const [history, setHistory] = useState([]);
   const styles = getStyles();
 
   useEffect(() => {
     getHistoryData();
-  }, []);
+  }, [isFocused]);
 
   const getHistoryData = async () => {
     try {
@@ -35,6 +37,7 @@ const HistoryList = () => {
       ListHeaderComponent={() => <Header text="History" />}
       stickyHeaderIndices={[0]}
       style={styles.container}
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };
