@@ -33,7 +33,8 @@ const fetchIdentyfingPlantSuccess = plants => dispatch => {
 export const fetchIdentyfingPlant = base64 => async dispatch => {
   try {
     dispatch(showModal(MT.LOADING_MODAL));
-    const data = await identifyPlant(base64);
+    const response = await identifyPlant(base64);
+    const data = await response.json();
     if (data.error) {
       dispatch(fetchIdentyfingPlantError(data));
       return;

@@ -9,8 +9,7 @@ export const identifyPlant = async base64 =>
     try {
       const { url, header, body } = identifyPlantData(base64);
       const response = await RNFetchBlob.fetch('POST', url, header, body);
-      const data = await response.json();
-      resolve(data);
+      resolve(response);
     } catch (err) {
       reject(err);
     }
