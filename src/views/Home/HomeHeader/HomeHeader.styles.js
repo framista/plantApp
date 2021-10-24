@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../constants/layout/colors';
+import { heightPixel } from '../../../utils/normalizeSizesHelper';
 
-const TITLE_ICON_SIZE = 60;
+const TITLE_ICON_SIZE = heightPixel(170);
 
 const getStyles = () => ({
   titleContainer: {
@@ -9,7 +10,7 @@ const getStyles = () => ({
     justifyContent: 'space-between',
   },
   iconContainer: {
-    marginTop: 5,
+    marginTop: heightPixel(15),
     paddingBottom: 5,
     width: TITLE_ICON_SIZE,
     height: TITLE_ICON_SIZE,

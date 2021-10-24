@@ -1,32 +1,32 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants/layout/colors';
-
-const IMAGE_SIZE = 150;
+import { heightPixel, widthPixel } from '../../../utils/normalizeSizesHelper';
 
 const getStyles = () => ({
   container: {
-    padding: 15,
+    padding: heightPixel(25),
     backgroundColor: '#fff',
     marginRight: 10,
-    width: 220,
-    maxWidth: 220,
-    borderRadius: 20,
+    width: widthPixel(450),
+    maxWidth: widthPixel(450),
+    borderRadius: heightPixel(40),
   },
   image: {
     width: '100%',
-    height: IMAGE_SIZE,
-    borderRadius: 20,
+    height: heightPixel(370),
+    borderRadius: heightPixel(40),
   },
   textSecondary: {
     color: colors.GRAY,
-    fontSize: 12,
+    fontSize: heightPixel(25),
+    paddingBottom: heightPixel(15),
   },
   textPrimary: {
     color: colors.BLACK,
     fontWeight: 'bold',
-    fontSize: 14,
-    marginTop: 2,
+    fontSize: heightPixel(30),
+    marginTop: heightPixel(10),
   },
 });
 

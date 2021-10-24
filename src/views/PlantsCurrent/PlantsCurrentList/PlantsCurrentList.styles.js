@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../constants/layout/colors';
+import { heightPixel } from '../../../utils/normalizeSizesHelper';
 
 const getStyles = () => ({
   container: {
@@ -9,9 +10,9 @@ const getStyles = () => ({
   title: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 24,
-    paddingTop: 20,
-    paddingBottom: 10,
+    fontSize: heightPixel(65),
+    paddingTop: heightPixel(40),
+    paddingBottom: heightPixel(40),
     backgroundColor: colors.LIGHT_GREEN,
   },
 });

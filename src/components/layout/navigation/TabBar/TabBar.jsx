@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { colors } from '../../../../constants/layout/colors';
+import { heightPixel } from '../../../../utils/normalizeSizesHelper';
 
 import { tabBarOptions } from './TabBar.helpers';
 
@@ -22,7 +23,7 @@ const TabBar = props => {
       {tabBarOptions.map(option => {
         const isFocused = option.screen === currentRouteName;
         const iconColor = isFocused ? colors.GREEN : colors.GRAY;
-        const iconSize = isFocused ? 40 : 25;
+        const iconSize = isFocused ? 140 : 80;
         return (
           <TouchableOpacity
             key={option.screen}
@@ -31,7 +32,11 @@ const TabBar = props => {
               isFocused ? styles.iconContainerFocused : {},
             ]}
             onPress={() => onPress(option)}>
-            <Icon name={option.icon} size={iconSize} color={iconColor} />
+            <Icon
+              name={option.icon}
+              size={heightPixel(iconSize)}
+              color={iconColor}
+            />
           </TouchableOpacity>
         );
       })}

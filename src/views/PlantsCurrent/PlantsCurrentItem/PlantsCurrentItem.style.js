@@ -1,51 +1,53 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../constants/layout/colors';
+import { heightPixel, widthPixel } from '../../../utils/normalizeSizesHelper';
 
 const getStyles = () => ({
   container: {
-    padding: 10,
+    padding: heightPixel(20),
     backgroundColor: colors.LIGHT_GREEN,
   },
   content: {
-    marginHorizontal: 10,
-    padding: 10,
-    borderRadius: 10,
+    marginHorizontal: widthPixel(25),
+    padding: heightPixel(25),
+    borderRadius: heightPixel(25),
     backgroundColor: colors.WHITE,
     elevation: 5,
   },
   title: {
     color: colors.BLACK,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: heightPixel(45),
+    flexWrap: 'wrap',
     marginBottom: 5,
   },
   detailsContainer: {
     flexDirection: 'row',
   },
   textSecondary: {
-    marginRight: 5,
+    marginRight: widthPixel(15),
     color: colors.GRAY,
-    fontSize: 14,
+    fontSize: heightPixel(35),
   },
   textPrimary: {
     color: colors.GRAY,
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: heightPixel(35),
   },
   namesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingTop: 10,
+    paddingTop: heightPixel(20),
   },
   textName: {
-    marginBottom: 5,
-    marginRight: 5,
-    paddingVertical: 3,
-    paddingHorizontal: 5,
-    borderRadius: 5,
-    borderWidth: 1,
+    marginBottom: heightPixel(15),
+    marginRight: widthPixel(15),
+    paddingVertical: widthPixel(10),
+    paddingHorizontal: heightPixel(15),
+    borderRadius: heightPixel(15),
+    borderWidth: widthPixel(3),
     borderColor: colors.GREEN,
-    fontSize: 12,
+    fontSize: heightPixel(30),
   },
 });
 

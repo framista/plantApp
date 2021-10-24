@@ -1,24 +1,25 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '../../../constants/layout/colors';
+import { heightPixel } from '../../../utils/normalizeSizesHelper';
 
 const getStyles = () => ({
   container: {
-    marginBottom: 10,
+    marginBottom: heightPixel(10),
   },
   detailsContainer: {
     flexDirection: 'row',
-    marginVertical: 3,
+    marginVertical: heightPixel(10),
   },
   textSecondary: {
     marginRight: 5,
     color: colors.GRAY,
-    fontSize: 16,
+    fontSize: heightPixel(38),
   },
   textPrimary: {
     color: colors.GRAY,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: heightPixel(38),
   },
 });
 
